@@ -25,6 +25,7 @@
 /backend/.idea/
 /frontend/.idea/
 /frontend/.vscode/
+/frontend/.angular/
 /backend/.vscode/
 
 # Ignorar archivos de sistema
