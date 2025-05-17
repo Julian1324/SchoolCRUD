@@ -1,0 +1,32 @@
+# Ignorar node_modules en frontend
+/frontend/node_modules/*
+
+# Ignorar dist y builds en frontend
+/frontend/dist/
+/frontend/out-tsc/
+/frontend/tmp/
+/frontend/temp/
+
+# Ignorar node_modules en backend (si hay)
+# (aunque lo típico en backend Java no hay node_modules, por si acaso)
+#/backend/node_modules/
+
+# Ignorar compilados y build en backend (Spring Boot)
+/backend/target/
+/backend/build/
+
+# Ignorar logs en backend
+/backend/*.log
+
+# Ignorar IDEs
+/.idea/
+/.vscode/
+/*.iml
+/backend/.idea/
+/frontend/.idea/
+/frontend/.vscode/
+/backend/.vscode/
+
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
