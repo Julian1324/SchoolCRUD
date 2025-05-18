@@ -12,13 +12,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ErrorDialogComponent } from './custom-components/error-dialog/error-dialog.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ErrorDialogComponent
+  ],
   imports: [
     CommonModule,
     SharedRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   exports: [
     MatFormFieldModule,
@@ -31,7 +37,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatToolbarModule,
     MatListModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ]
 })
 export class SharedModule { }

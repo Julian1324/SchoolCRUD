@@ -2,6 +2,8 @@ package com.julian.app.personas_service.controllers;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +23,7 @@ public class PersonaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Persona>> list() {
-        return ResponseEntity.ok(personaService.findAll());
+    public ResponseEntity<Page<Persona>> list(Pageable pageable) {
+        return ResponseEntity.ok(personaService.findAll(pageable));
     }
 }

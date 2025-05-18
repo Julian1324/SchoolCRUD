@@ -1,6 +1,5 @@
 package com.julian.app.personas_service.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -8,7 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.julian.app.personas_service.entities.Persona;
 import com.julian.app.personas_service.repositories.PersonaRepository;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 @Service
 public class PersonaServiceImpl implements PersonaService {
 
@@ -20,8 +20,8 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Persona> findAll() {
-        return (List<Persona>) personaRepository.findAll();
+    public Page<Persona> findAll(Pageable pageable) {
+        return personaRepository.findAll(pageable);
     }
 
     @Override
