@@ -2,7 +2,7 @@ CREATE DATABASE schooldb;
 
 \c schooldb
 
-CREATE SEQUENCE seq_persona_id
+CREATE SEQUENCE seq_personas
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -10,7 +10,7 @@ CREATE SEQUENCE seq_persona_id
     CACHE 1;
 
 CREATE TABLE personas (
-    id_persona INTEGER PRIMARY KEY DEFAULT nextval('seq_persona_id'),
+    id_persona INTEGER PRIMARY KEY DEFAULT nextval('seq_personas'),
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
     fecha_nacimiento DATE NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE personas (
     telefono VARCHAR(20)
 );
 
-CREATE SEQUENCE seq_estudiante_id
+CREATE SEQUENCE seq_estudiantes
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -26,7 +26,7 @@ CREATE SEQUENCE seq_estudiante_id
     CACHE 1;
 
 CREATE TABLE estudiantes (
-    id_estudiante INTEGER PRIMARY KEY DEFAULT nextval('seq_estudiante_id'),
+    id_estudiante INTEGER PRIMARY KEY DEFAULT nextval('seq_estudiantes'),
     id_persona INTEGER NOT NULL,
     numero_matricula VARCHAR(50) NOT NULL UNIQUE,
     grado VARCHAR(50) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE estudiantes (
         ON DELETE CASCADE
 );
 
-CREATE SEQUENCE seq_profesor_id
+CREATE SEQUENCE seq_profesores
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -44,7 +44,7 @@ CREATE SEQUENCE seq_profesor_id
     CACHE 1;
 
 CREATE TABLE profesores (
-    id_profesor INTEGER PRIMARY KEY DEFAULT nextval('seq_profesor_id'),
+    id_profesor INTEGER PRIMARY KEY DEFAULT nextval('seq_profesores'),
     id_persona INTEGER NOT NULL,
     especialidad VARCHAR(100) NOT NULL,
     fecha_contratacion DATE NOT NULL,

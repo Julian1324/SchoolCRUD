@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: school-api
+          uri: lb://personas-service
+          predicates:
+            - Path=/api/personas/**
+          filters:
+            - RewritePath=/api/personas/(?<segment>.*), /${segment} 
