@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SubjectService } from 'src/app/core/services/subject.service';
 import { SubSink } from 'subsink';
 import { EditPersonaDialogComponent } from 'src/app/modules/shared/custom-components/edit-persona-dialog/edit-persona-dialog.component';
+import { ConfirmDialogComponent } from 'src/app/modules/shared/custom-components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-personas',
@@ -63,6 +64,13 @@ export class PersonasComponent implements OnInit, OnDestroy {
 
   openEditDialog(persona: PersonaDTO): void {
     this.dialog.open(EditPersonaDialogComponent, {
+      width: '400px',
+      data: persona
+    });
+  }
+
+  openConfirmDialog(persona: PersonaDTO): void {
+    this.dialog.open(ConfirmDialogComponent, {
       width: '400px',
       data: persona
     });

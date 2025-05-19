@@ -19,13 +19,15 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { SuccessDialogComponent } from './custom-components/success-dialog/success-dialog.component';
 import { EditPersonaDialogComponent } from './custom-components/edit-persona-dialog/edit-persona-dialog.component';
+import { ConfirmDialogComponent } from './custom-components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
     ErrorDialogComponent,
     CreatePersonaDialogComponent,
     SuccessDialogComponent,
-    EditPersonaDialogComponent
+    EditPersonaDialogComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     CommonModule,

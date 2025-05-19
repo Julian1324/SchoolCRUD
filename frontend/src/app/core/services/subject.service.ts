@@ -28,6 +28,12 @@ export class SubjectService {
     this.personas$.next([...updatedPersonas]);
   }
 
+  deletePersona(idPersona: number): void {
+    const personas = this.personas$.getValue();
+    const personasFiltered = personas.filter( persona => persona.idPersona !== idPersona);
+    this.personas$.next(personasFiltered);
+  }
+
   clear(): void {
     this.personas$.next([]);
   }
