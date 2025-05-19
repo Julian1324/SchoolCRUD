@@ -9,6 +9,7 @@ import { SubjectService } from 'src/app/core/services/subject.service';
 import { SubSink } from 'subsink';
 import { EditPersonaDialogComponent } from 'src/app/modules/shared/custom-components/edit-persona-dialog/edit-persona-dialog.component';
 import { ConfirmDialogComponent } from 'src/app/modules/shared/custom-components/confirm-dialog/confirm-dialog.component';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-personas',
@@ -37,23 +38,22 @@ export class PersonasComponent implements OnInit, OnDestroy {
     this.subs.add(
       this.subjectService.getPersonasValue().subscribe((personas: PersonaDTO[]) => {
         this.dataSource = personas;
-        console.log('personas:', personas);
       })
     );
   }
 
   getPersonas() {
-    this.subs.add(
-      this.personasService.getPersonas().subscribe({
-        next: (response: any) => {
-          this.dataSource = (response.content as PersonaDTO[]);
-          this.subjectService.setPersonasValue(this.dataSource);
-        },
-        error: (_) => {
-          this.notificationService.showError(constants.MODAL_BODY_ERROR);
-        }
-      })
-    );
+    this.personasService.getPersonas()
+    .pipe(take(1))
+    .subscribe({
+      next: (response: any) => {
+        this.dataSource = (response.content as PersonaDTO[]);
+        this.subjectService.setPersonasValue(this.dataSource);
+      },
+      error: (_) => {
+        this.notificationService.showError(constants.MODAL_BODY_ERROR);
+      }
+    });
   }
 
   openCreateDialog(): void {

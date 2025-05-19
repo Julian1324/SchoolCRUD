@@ -1,19 +1,18 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { SubSink } from 'subsink';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   hidePassword = true;
-  subs: SubSink = new SubSink();
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
@@ -21,30 +20,27 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: ['Julian9824', Validators.required]
     });
   }
-  
+
   ngOnInit(): void {
   }
-  
+
   onSubmit() {
     return this.router.navigate(['/dashboard']);
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
-      
-      this.subs.add(
-        this.authService.login(email, password).subscribe({
-          next: (res) => {
-            console.log('Token recibido:', res.token);
-          },
-          error: (err) => {
-            console.error('Error de login:', err);
-          }
-        })
-      );
+
+      this.authService.login(email, password)
+      .pipe(take(1))
+      .subscribe({
+        next: (res) => {
+          console.log('Token recibido:', res.token);
+        },
+        error: (err) => {
+          console.error('Error de login:', err);
+        }
+      });
     }
   }
 
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
-  }
 
 }
