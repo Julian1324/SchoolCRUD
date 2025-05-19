@@ -1,9 +1,9 @@
-/* Estilos base */
+
 .navbar {
   height: 64px;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* para espacio entre logo y botón de menú */
+  justify-content: space-between;
   padding: 0 1rem;
   font-size: 1.5rem;
   font-weight: bold;
@@ -22,7 +22,7 @@
 
 .dashboard-container {
   display: flex;
-  height: calc(100vh - 64px); /* deja espacio para el navbar */
+  height: calc(100vh - 64px);
 }
 
 .sidebar {
@@ -41,7 +41,11 @@
   overflow-y: auto;
 }
 
-/* Responsive para pantallas pequeñas */
+.active-link {
+  background-color: rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
+
 @media (max-width: 768px) {
   .dashboard-container {
     flex-direction: column;
@@ -52,7 +56,6 @@
     top: 64px;
     left: 0;
     height: calc(100vh - 64px);
-    /* transform: translateX(-100%); */
     z-index: 1000;
     background-color: white;
   }

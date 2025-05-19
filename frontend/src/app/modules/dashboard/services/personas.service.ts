@@ -15,4 +15,15 @@ export class PersonasService {
   getPersonas(): Observable<PersonaDTO[]> {
     return this.http.get<PersonaDTO[]>(environment.api + constants.PERSONAS_URL + constants.INITIAL_PAGINATION);
   }
+
+  createPersona(persona: PersonaDTO): Observable<PersonaDTO> {
+    return this.http.post<PersonaDTO>(environment.api + constants.PERSONAS_URL, persona);
+  }
+
+  updatePersona(persona: PersonaDTO): Observable<PersonaDTO> {
+    return this.http.put<PersonaDTO>(environment.api + constants.PERSONAS_URL, persona);
+  }
+  deletePersona(id: number): Observable<void> {
+    return this.http.delete<void>(environment.api + constants.PERSONAS_URL + '/' + id);
+  }
 }

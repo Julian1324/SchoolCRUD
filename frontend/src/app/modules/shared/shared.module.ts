@@ -14,17 +14,30 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorDialogComponent } from './custom-components/error-dialog/error-dialog.component';
+import { CreatePersonaDialogComponent } from './custom-components/create-persona-dialog/create-persona-dialog.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { SuccessDialogComponent } from './custom-components/success-dialog/success-dialog.component';
+import { EditPersonaDialogComponent } from './custom-components/edit-persona-dialog/edit-persona-dialog.component';
 
 @NgModule({
   declarations: [
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    CreatePersonaDialogComponent,
+    SuccessDialogComponent,
+    EditPersonaDialogComponent
   ],
   imports: [
     CommonModule,
     SharedRoutingModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatIconModule
   ],
   exports: [
     MatFormFieldModule,
