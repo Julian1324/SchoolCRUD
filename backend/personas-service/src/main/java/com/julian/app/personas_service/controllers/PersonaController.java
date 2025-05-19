@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
-@RequestMapping("/api/personas/")
+@RequestMapping
 public class PersonaController {
 
     private final PersonaService personaService;
@@ -82,7 +82,7 @@ public class PersonaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePersona(@PathVariable Long id) {
-        // personaService.deletePersona(id);
+        personaService.deletePersona(id);
         logger.info("DELETE /api/personas/" + id + " ejecutado");
         return ResponseEntity.noContent().build();
     }
