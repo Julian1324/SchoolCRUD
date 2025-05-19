@@ -1,0 +1,11 @@
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 85px;
+  }
+  
+  .nuevo-btn {
+    background-color: #1a237e;
+    color: white;
+  }
