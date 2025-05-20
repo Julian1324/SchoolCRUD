@@ -21,12 +21,18 @@ spring:
               - "*"
             allowCredentials: true
       routes:
-        - id: school-api
+        - id: personas-api
           uri: lb://personas-service
           predicates:
             - Path=/api/personas/**
           filters:
             - RewritePath=/api/personas(?<segment>.*), /${segment}
+        - id: estudiantes-api
+          uri: lb://estudiantes-service
+          predicates:
+            - Path=/api/estudiantes/**
+          filters:
+            - RewritePath=/api/estudiantes(?<segment>.*), /${segment}
 
 eureka:
   client:

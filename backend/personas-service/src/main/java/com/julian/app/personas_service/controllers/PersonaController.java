@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,6 +49,13 @@ public class PersonaController {
         logger.info(
                 "GET /api/personas ejecutado" + " - Page: " + personas.getNumber() + ", Size: " + personas.getSize());
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/personasByIds")
+    public ResponseEntity<List<PersonaDTO>> getPersonasByIds(@RequestBody List<Long> ids) {
+        List<PersonaDTO> personas = personaService.findPersonasByIds(ids);
+        logger.info("POST /api/personas/personasByIds ejecutado - IDs: {}", ids);
+        return ResponseEntity.ok(personas);
     }
 
     @PostMapping
@@ -78,7 +87,6 @@ public class PersonaController {
         logger.info("PUT /api/personas ejecutado" + " - Persona: " + updated);
         return ResponseEntity.ok(updated);
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePersona(@PathVariable Long id) {

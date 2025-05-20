@@ -7,12 +7,14 @@ import { NotificationService } from 'src/app/core/services/notification.service'
 import { SubjectService } from 'src/app/core/services/subject.service';
 import { PersonaDTO } from 'src/app/modules/dashboard/data/PersonaDTO';
 import { PersonasService } from 'src/app/modules/dashboard/services/personas.service';
+
 @Component({
-  selector: 'app-edit-persona-dialog',
-  templateUrl: './edit-persona-dialog.component.html',
-  styleUrls: ['./edit-persona-dialog.component.css']
+  selector: 'app-edit-estudiante-dialog',
+  templateUrl: './edit-estudiante-dialog.component.html',
+  styleUrls: ['./edit-estudiante-dialog.component.css']
 })
-export class EditPersonaDialogComponent implements OnInit {
+export class EditEstudianteDialogComponent implements OnInit {
+
   personaForm!: FormGroup;
 
   constructor(
@@ -69,4 +71,5 @@ export class EditPersonaDialogComponent implements OnInit {
       console.log('Formulario inválido');
     }
   }
+
 }

@@ -1,0 +1,56 @@
+<h2 mat-dialog-title>Nuevo Estudiante</h2>
+<mat-dialog-content>
+    <form [formGroup]="personaForm" class="persona-form">
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" />
+            <mat-error *ngIf="personaForm.get('nombres')?.hasError('required')">
+              El nombre es obligatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Apellido</mat-label>
+            <input matInput formControlName="apellido" />
+            <mat-error *ngIf="personaForm.get('apellidos')?.hasError('required')">
+              Los apellidos son obligatorios
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Fecha de Nacimiento</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="personaForm.get('fechaNacimiento')?.hasError('required')">
+              La fecha de nacimiento es obligatoria
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email" />
+            <mat-error *ngIf="personaForm.get('email')?.hasError('required')">
+              El email es obligatorio
+            </mat-error>
+            <mat-error *ngIf="personaForm.get('email')?.hasError('email')">
+              Ingresa un email válido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Teléfono</mat-label>
+            <input matInput formControlName="telefono" type="tel" />
+            <mat-error *ngIf="personaForm.get('telefono')?.hasError('required')">
+              El teléfono es obligatorio
+            </mat-error>
+            <mat-error *ngIf="personaForm.get('telefono')?.hasError('pattern')">
+              Ingresa solo números en el teléfono
+            </mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button color="primary" [mat-dialog-close]="true" [disabled]="personaForm.invalid" (click)="savePersona()">Guardar</button>
+</mat-dialog-actions>

@@ -8,11 +8,12 @@ import { PersonaDTO } from 'src/app/modules/dashboard/data/PersonaDTO';
 import { PersonasService } from 'src/app/modules/dashboard/services/personas.service';
 
 @Component({
-  selector: 'app-create-persona-dialog',
-  templateUrl: './create-persona-dialog.component.html',
-  styleUrls: ['./create-persona-dialog.component.css']
+  selector: 'app-create-estudiante-dialog',
+  templateUrl: './create-estudiante-dialog.component.html',
+  styleUrls: ['./create-estudiante-dialog.component.css']
 })
-export class CreatePersonaDialogComponent implements OnInit {
+export class CreateEstudianteDialogComponent implements OnInit {
+
   personaForm!: FormGroup;
 
   constructor(
@@ -64,4 +65,5 @@ export class CreatePersonaDialogComponent implements OnInit {
       console.log('Formulario inválido');
     }
   }
+
 }

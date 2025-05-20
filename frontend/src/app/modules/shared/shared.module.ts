@@ -20,6 +20,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { SuccessDialogComponent } from './custom-components/success-dialog/success-dialog.component';
 import { EditPersonaDialogComponent } from './custom-components/edit-persona-dialog/edit-persona-dialog.component';
 import { ConfirmDialogComponent } from './custom-components/confirm-dialog/confirm-dialog.component';
+import { CreateEstudianteDialogComponent } from './custom-components/create-estudiante-dialog/create-estudiante-dialog.component';
+import { EditEstudianteDialogComponent } from './custom-components/edit-estudiante-dialog/edit-estudiante-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { ConfirmDialogComponent } from './custom-components/confirm-dialog/confi
     CreatePersonaDialogComponent,
     SuccessDialogComponent,
     EditPersonaDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    CreateEstudianteDialogComponent,
+    EditEstudianteDialogComponent
   ],
   imports: [
     CommonModule,

@@ -1,10 +1,13 @@
 package com.julian.app.personas_service.services;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.julian.app.personas_service.dto.PersonaDTO;
 import com.julian.app.personas_service.entities.Persona;
 import com.julian.app.personas_service.exceptions.RecursoNoEncontradoException;
 import com.julian.app.personas_service.repositories.PersonaRepository;
@@ -37,6 +40,15 @@ public class PersonaServiceImpl implements PersonaService {
     public Optional<Persona> getPersonaById(Long id) {
         return Optional.of(personaRepository.findById(id)
                 .orElseThrow(() -> new RecursoNoEncontradoException("Persona no encontrada con ID: " + id)));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<PersonaDTO> findPersonasByIds(List<Long> ids) {
+        return personaRepository.findAllById(ids).stream()
+                .map(p -> new PersonaDTO(p.getIdPersona(), p.getNombre(), p.getApellido(),
+                        p.getFechaNacimiento(), p.getEmail(), p.getTelefono()))
+                .collect(Collectors.toList());
     }
 
     @Override
