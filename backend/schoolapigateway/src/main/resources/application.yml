@@ -27,14 +27,26 @@ spring:
             - Path=/api/personas/**
           filters:
             - RewritePath=/api/personas(?<segment>.*), /${segment}
+            - name: PetitionPrefilter
         - id: estudiantes-api
           uri: lb://estudiantes-service
           predicates:
             - Path=/api/estudiantes/**
           filters:
             - RewritePath=/api/estudiantes(?<segment>.*), /${segment}
+            - name: PetitionPrefilter
+        - id: usuarios-api-auth
+          uri: lb://usuarios-service
+          predicates:
+            - Path=/api/usuarios/autenticacion
+          filters:
+            - RewritePath=/api/usuarios(?<segment>.*), /${segment}
+
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+validate-petition:
+  url: http://localhost:8006/validartoken
