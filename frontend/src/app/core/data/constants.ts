@@ -1,6 +1,6 @@
 const APP_NAME = 'Registro de estudiantes';
 const APP_VERSION = '1.0.0';
-const LOGIN_URL = '/login';
+const LOGIN_URL = '/usuarios/autenticacion';
 const PERSONAS_URL = '/personas';
 const ESTUDIANTES_URL = '/estudiantes';
 const INITIAL_PAGINATION = '?page=0&size=5';

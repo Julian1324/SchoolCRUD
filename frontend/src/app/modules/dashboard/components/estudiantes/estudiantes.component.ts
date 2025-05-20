@@ -5,13 +5,12 @@ import { constants } from 'src/app/core/data/constants';
 import { MatDialog } from '@angular/material/dialog';
 import { SubjectService } from 'src/app/core/services/subject.service';
 import { SubSink } from 'subsink';
-import { EditPersonaDialogComponent } from 'src/app/modules/shared/custom-components/edit-persona-dialog/edit-persona-dialog.component';
-import { ConfirmDialogComponent } from 'src/app/modules/shared/custom-components/confirm-dialog/confirm-dialog.component';
 import { take } from 'rxjs';
 import { EstudiantesService } from '../../services/estudiantes.service';
 import { EstudianteDTO } from '../../data/EstudianteDTO';
 import { CreateEstudianteDialogComponent } from 'src/app/modules/shared/custom-components/create-estudiante-dialog/create-estudiante-dialog.component';
 import { EditEstudianteDialogComponent } from 'src/app/modules/shared/custom-components/edit-estudiante-dialog/edit-estudiante-dialog.component';
+import { ConfirmEstudiantesDialogComponent } from 'src/app/modules/shared/custom-components/confirm-estudiantes-dialog/confirm-estudiantes-dialog.component';
 
 @Component({
   selector: 'app-estudiantes',
@@ -73,7 +72,7 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
   }
 
   openConfirmDialog(estudiante: EstudianteDTO): void {
-    this.dialog.open(ConfirmDialogComponent, {
+    this.dialog.open(ConfirmEstudiantesDialogComponent, {
       width: '400px',
       data: estudiante
     });

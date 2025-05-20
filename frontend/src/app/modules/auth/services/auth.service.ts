@@ -13,7 +13,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Observable<AuthDTO> {
-    const body = { email, password };
+    const body = { correo: email, contrasena: password };
     return this.http.post<AuthDTO>(environment.api + constants.LOGIN_URL, body);
   }
 }

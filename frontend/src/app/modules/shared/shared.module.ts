@@ -23,6 +23,7 @@ import { ConfirmDialogComponent } from './custom-components/confirm-dialog/confi
 import { CreateEstudianteDialogComponent } from './custom-components/create-estudiante-dialog/create-estudiante-dialog.component';
 import { EditEstudianteDialogComponent } from './custom-components/edit-estudiante-dialog/edit-estudiante-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ConfirmEstudiantesDialogComponent } from './custom-components/confirm-estudiantes-dialog/confirm-estudiantes-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MatSelectModule } from '@angular/material/select';
     EditPersonaDialogComponent,
     ConfirmDialogComponent,
     CreateEstudianteDialogComponent,
-    EditEstudianteDialogComponent
+    EditEstudianteDialogComponent,
+    ConfirmEstudiantesDialogComponent
   ],
   imports: [
     CommonModule,

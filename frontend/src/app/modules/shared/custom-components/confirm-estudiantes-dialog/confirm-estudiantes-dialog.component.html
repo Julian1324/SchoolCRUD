@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Confirmación</h2>
+<mat-dialog-content>
+    <p>¿Está seguro que desea eliminar a {{estudiante.nombre}} {{estudiante.apellido}}?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button color="primary" [mat-dialog-close]="true" (click)="onDeleteEstudiante()">Confirmar</button>
+</mat-dialog-actions>

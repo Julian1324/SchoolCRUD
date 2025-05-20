@@ -36,7 +36,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Optional<Usuario> user = userRepository.findByCorreo(login.getCorreo(), EstadosEnum.ACTIVO.getEstado());
 
         if (user.isEmpty()) {
-            throw new RecursoNoAutorizadoException("Verifica Las credenciales", HttpStatus.UNAUTHORIZED);
+            throw new RecursoNoAutorizadoException("Verifica las credenciales.", HttpStatus.UNAUTHORIZED);
         }
 
         if (passwordEncoder.matches(login.getContrasena(), user.get().getContrasena())) {
@@ -51,7 +51,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             String jwtToken = jwtService.generateToken(user.get());
             return new TokenDTO(jwtToken);
         }
-        throw new RecursoNoAutorizadoException("Verifica Las credenciales", HttpStatus.UNAUTHORIZED);
+        throw new RecursoNoAutorizadoException("Verifica las credenciales.", HttpStatus.UNAUTHORIZED);
 
     }
 

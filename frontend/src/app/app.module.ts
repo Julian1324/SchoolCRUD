@@ -5,8 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { TokenInterceptorService } from './core/interceptors/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,11 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
     HttpClientModule,
     DashboardModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
