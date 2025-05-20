@@ -21,7 +21,7 @@ public class Estudiante {
         sequenceName = "seq_estudiantes",
         allocationSize = 1
     )
-    @Column(name = "id_estudiante", nullable = false)
+    @Column(name = "id_estudiante")
     private Long idEstudiante;
     
     @Column(name = "id_persona", nullable = false)

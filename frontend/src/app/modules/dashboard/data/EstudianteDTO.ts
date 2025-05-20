@@ -3,6 +3,6 @@ export interface EstudianteDTO {
     idPersona?: number;
     nombre?: string;
     apellido?: string;
-    numeroMatricula: string;
-    grado: string;
+    numeroMatricula: number;
+    grado: number;
 }

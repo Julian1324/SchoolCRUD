@@ -65,8 +65,8 @@ public class EstudianteController {
 
     @PutMapping
     public ResponseEntity<Estudiante> updateEstudiante(@Valid @RequestBody EstudianteDTO estudianteDTO) {
-
         Estudiante estudiante = new Estudiante();
+        estudiante.setIdEstudiante(estudianteDTO.getIdEstudiante());
         estudiante.setIdPersona(estudianteDTO.getIdPersona());
         estudiante.setNumeroMatricula(estudianteDTO.getNumeroMatricula());
         estudiante.setGrado(estudianteDTO.getGrado());

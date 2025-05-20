@@ -5,8 +5,8 @@ import { take } from 'rxjs';
 import { constants } from 'src/app/core/data/constants';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { SubjectService } from 'src/app/core/services/subject.service';
-import { PersonaDTO } from 'src/app/modules/dashboard/data/PersonaDTO';
-import { PersonasService } from 'src/app/modules/dashboard/services/personas.service';
+import { EstudianteDTO } from 'src/app/modules/dashboard/data/EstudianteDTO';
+import { EstudiantesService } from 'src/app/modules/dashboard/services/estudiantes.service';
 
 @Component({
   selector: 'app-edit-estudiante-dialog',
@@ -15,12 +15,12 @@ import { PersonasService } from 'src/app/modules/dashboard/services/personas.ser
 })
 export class EditEstudianteDialogComponent implements OnInit {
 
-  personaForm!: FormGroup;
+  estudianteForm!: FormGroup;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public persona: PersonaDTO,
+    @Inject(MAT_DIALOG_DATA) public estudiante: any,
     private fb: FormBuilder,
-    private personasService: PersonasService,
+    private estudiantesService: EstudiantesService,
     private notificationService: NotificationService,
     private subjectService: SubjectService
   ) { }
@@ -30,33 +30,38 @@ export class EditEstudianteDialogComponent implements OnInit {
   }
 
   buildForm() {
-    this.personaForm = this.fb.group({
-      nombre: [this.persona.nombre, Validators.required],
-      apellido: [this.persona.apellido, Validators.required],
-      fechaNacimiento: [this.persona.fechaNacimiento, Validators.required],
-      email: [this.persona.email, [Validators.required, Validators.email]],
-      telefono: [this.persona.telefono, [Validators.required, Validators.pattern('^[0-9]*$')]],
+    this.estudianteForm = this.fb.group({
+      nombre: [{ value: this.estudiante.nombre, disabled: true }, Validators.required],
+      apellido: [{ value: this.estudiante.apellido, disabled: true }, Validators.required],
+      numeroMatricula: [parseInt(this.estudiante.numeroMatricula), [Validators.required, Validators.pattern('^[0-9]*$')]],
+      grado: [parseInt(this.estudiante.grado), [Validators.required, Validators.pattern('^[0-9]*$')]],
     });
   }
 
-  savePersona() {
-    if (this.personaForm.valid) {
-      const updatedPersona = { idPersona: this.persona.idPersona, ...this.personaForm.value };
-      let fecha = updatedPersona.fechaNacimiento;
+  saveEstudiante() {
+    if (this.estudianteForm.valid) {
 
-      if (typeof fecha === 'string') {
-        fecha = new Date(fecha);
-      }
-      updatedPersona.fechaNacimiento = fecha.toISOString().split('T')[0];
+      const updatedEstudiante = {
+        idPersona: this.estudiante.idPersona,
+        idEstudiante: this.estudiante.idEstudiante,
+        ...this.estudianteForm.value
+      };
 
-      this.personasService.updatePersona(updatedPersona)
-      .pipe(take(1))
-      .subscribe({
-        next: (response: PersonaDTO) => {
-          this.subjectService.updatePersona(response);
-          this.notificationService.showSuccess(constants.MODAL_BODY_SUCCESS);
-        },
-        error: (err) => {
+      this.estudiantesService.updateEstudiante(updatedEstudiante)
+        .pipe(take(1))
+        .subscribe({
+          next: (response: EstudianteDTO) => {
+
+            this.subjectService.updateEstudiante({
+              nombre: this.estudiante.nombre,
+              apellido: this.estudiante.apellido,
+              idEstudiante: this.estudiante.idEstudiante,
+              ...response
+            });
+
+            this.notificationService.showSuccess(constants.MODAL_BODY_SUCCESS);
+          },
+          error: (err) => {
             const errorMessage = err.error?.errores?.length
               ? err.error.errores.reduce((acum: any, error: any) => {
                 acum = acum + error + '\n';
@@ -66,7 +71,7 @@ export class EditEstudianteDialogComponent implements OnInit {
 
             this.notificationService.showError(errorMessage);
           }
-      });
+        });
     } else {
       console.log('Formulario inválido');
     }

@@ -22,6 +22,7 @@ import { EditPersonaDialogComponent } from './custom-components/edit-persona-dia
 import { ConfirmDialogComponent } from './custom-components/confirm-dialog/confirm-dialog.component';
 import { CreateEstudianteDialogComponent } from './custom-components/create-estudiante-dialog/create-estudiante-dialog.component';
 import { EditEstudianteDialogComponent } from './custom-components/edit-estudiante-dialog/edit-estudiante-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { EditEstudianteDialogComponent } from './custom-components/edit-estudian
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   exports: [
     MatFormFieldModule,
