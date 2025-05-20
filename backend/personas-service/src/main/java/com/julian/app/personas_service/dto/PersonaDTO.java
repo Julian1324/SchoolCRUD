@@ -25,8 +25,6 @@ public class PersonaDTO {
         this.telefono = telefono;
     }
 
-    @NotNull(message = "El id de la persona es obligatorio.")
-    @Pattern(regexp = "^[0-9]+$", message = "El id de la persona debe ser un número.")
     private Long idPersona;
 
     @NotBlank(message = "El nombre es obligatorio.")
