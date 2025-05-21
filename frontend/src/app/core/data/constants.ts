@@ -3,6 +3,7 @@ const APP_VERSION = '1.0.0';
 const LOGIN_URL = '/usuarios/autenticacion';
 const PERSONAS_URL = '/personas';
 const ESTUDIANTES_URL = '/estudiantes';
+const PROFESORES_URL = '/profesores';
 const INITIAL_PAGINATION = '?page=0&size=5';
 const MODAL_TITLE_ERROR = '\u00A1Oops, error en la solicitud!';
 const MODAL_BODY_ERROR = 'Lo sentimos, ha ocurrido un error inesperado.';
@@ -15,6 +16,7 @@ export const constants = {
     LOGIN_URL,
     PERSONAS_URL,
     ESTUDIANTES_URL,
+    PROFESORES_URL,
     INITIAL_PAGINATION,
     MODAL_TITLE_ERROR,
     MODAL_BODY_ERROR,

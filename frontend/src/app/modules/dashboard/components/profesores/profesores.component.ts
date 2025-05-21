@@ -6,11 +6,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { SubjectService } from 'src/app/core/services/subject.service';
 import { SubSink } from 'subsink';
 import { take } from 'rxjs';
-import { EstudiantesService } from '../../services/estudiantes.service';
 import { EstudianteDTO } from '../../data/EstudianteDTO';
-import { CreateEstudianteDialogComponent } from 'src/app/modules/shared/custom-components/create-estudiante-dialog/create-estudiante-dialog.component';
 import { EditEstudianteDialogComponent } from 'src/app/modules/shared/custom-components/edit-estudiante-dialog/edit-estudiante-dialog.component';
 import { ConfirmEstudiantesDialogComponent } from 'src/app/modules/shared/custom-components/confirm-estudiantes-dialog/confirm-estudiantes-dialog.component';
+import { CreateProfesorDialogComponent } from 'src/app/modules/shared/custom-components/create-profesor-dialog/create-profesor-dialog.component';
+import { ProfesorDTO } from '../../data/ProfesorDTO';
+import { ProfesoresService } from '../../services/profesores.service';
+import { EditProfesorDialogComponent } from 'src/app/modules/shared/custom-components/edit-profesor-dialog/edit-profesor-dialog.component';
+import { ConfirmProfesorDialogComponent } from 'src/app/modules/shared/custom-components/confirm-profesor-dialog/confirm-profesor-dialog.component';
 
 
 @Component({
@@ -20,38 +23,38 @@ import { ConfirmEstudiantesDialogComponent } from 'src/app/modules/shared/custom
 })
 export class ProfesoresComponent implements OnInit {
 
-  displayedColumns: string[] = ['Nombre', 'Apellido', 'Número matrícula', 'Grado', 'Acciones'];
-  dataSource: EstudianteDTO[] = [];
+  displayedColumns: string[] = ['Nombre', 'Apellido', 'Especialidad', 'Fecha de contratación', 'Acciones'];
+  dataSource: ProfesorDTO[] = [];
   subs = new SubSink();
   personas: PersonaDTO[] = [];
 
   constructor(
-    private estudiantesService: EstudiantesService,
+    private profesoresService: ProfesoresService,
     private notificationService: NotificationService,
     private dialog: MatDialog,
     private subjectService: SubjectService
   ) { }
 
   ngOnInit(): void {
-    this.getEstudiantes();
-    this.getEstudiantesSubject();
+    this.getProfesores();
+    this.getProfesoresSubject();
   }
 
-  getEstudiantesSubject() {
+  getProfesoresSubject() {
     this.subs.add(
-      this.subjectService.getEstudiantesValue().subscribe((estudiantes: EstudianteDTO[]) => {
-        this.dataSource = estudiantes;
+      this.subjectService.getProfesoresValue().subscribe((profesores: ProfesorDTO[]) => {
+        this.dataSource = profesores;
       })
     );
   }
 
-  getEstudiantes() {
-    this.estudiantesService.getEstudiantes()
+  getProfesores() {
+    this.profesoresService.getProfesores()
       .pipe(take(1))
       .subscribe({
         next: (response: any) => {
-          this.dataSource = (response.content as EstudianteDTO[]);
-          this.subjectService.setEstudiantesValue(this.dataSource);
+          this.dataSource = (response.content as ProfesorDTO[]);
+          this.subjectService.setProfesoresValue(this.dataSource);
         },
         error: (_) => {
           this.notificationService.showError(constants.MODAL_BODY_ERROR);
@@ -60,22 +63,22 @@ export class ProfesoresComponent implements OnInit {
   }
 
   openCreateDialog(): void {
-    this.dialog.open(CreateEstudianteDialogComponent, {
+    this.dialog.open(CreateProfesorDialogComponent, {
       width: '400px'
     });
   }
 
-  openEditDialog(estudiante: EstudianteDTO): void {
-    this.dialog.open(EditEstudianteDialogComponent, {
+  openEditDialog(profesor: ProfesorDTO): void {
+    this.dialog.open(EditProfesorDialogComponent, {
       width: '400px',
-      data: estudiante
+      data: profesor
     });
   }
 
-  openConfirmDialog(estudiante: EstudianteDTO): void {
-    this.dialog.open(ConfirmEstudiantesDialogComponent, {
+  openConfirmDialog(profesor: ProfesorDTO): void {
+    this.dialog.open(ConfirmProfesorDialogComponent, {
       width: '400px',
-      data: estudiante
+      data: profesor
     });
   }
 

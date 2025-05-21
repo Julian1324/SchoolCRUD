@@ -24,6 +24,9 @@ import { CreateEstudianteDialogComponent } from './custom-components/create-estu
 import { EditEstudianteDialogComponent } from './custom-components/edit-estudiante-dialog/edit-estudiante-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ConfirmEstudiantesDialogComponent } from './custom-components/confirm-estudiantes-dialog/confirm-estudiantes-dialog.component';
+import { CreateProfesorDialogComponent } from './custom-components/create-profesor-dialog/create-profesor-dialog.component';
+import { EditProfesorDialogComponent } from './custom-components/edit-profesor-dialog/edit-profesor-dialog.component';
+import { ConfirmProfesorDialogComponent } from './custom-components/confirm-profesor-dialog/confirm-profesor-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { ConfirmEstudiantesDialogComponent } from './custom-components/confirm-e
     ConfirmDialogComponent,
     CreateEstudianteDialogComponent,
     EditEstudianteDialogComponent,
-    ConfirmEstudiantesDialogComponent
+    ConfirmEstudiantesDialogComponent,
+    CreateProfesorDialogComponent,
+    EditProfesorDialogComponent,
+    ConfirmProfesorDialogComponent
   ],
   imports: [
     CommonModule,

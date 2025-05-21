@@ -67,7 +67,7 @@ export class SubjectService {
 
   updateProfesor(profesor: ProfesorDTO): void {
     const profesores = this.profesores$.getValue();
-    const updatedProfesores = profesores.map(p => p.idPersona === profesor.idProfesor ? profesor : p);
+    const updatedProfesores = profesores.map(p => p.idProfesor === profesor.idProfesor ? profesor : p);
     this.profesores$.next([...updatedProfesores]);
   }
 

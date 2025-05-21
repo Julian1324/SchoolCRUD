@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Nuevo Profesor</h2>
+<mat-dialog-content>
+    <form [formGroup]="profesorForm" class="persona-form">
+        <mat-form-field appearance="fill">
+            <mat-label>Selecciona una opción</mat-label>
+            <mat-select formControlName="idPersona" (openedChange)="onSelectClicked($event)">
+                <mat-option *ngFor="let persona of options" [value]="persona.value">
+                    {{ persona.viewValue }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Especialidad</mat-label>
+            <input matInput formControlName="especialidad" type="text" />
+            <mat-error *ngIf="profesorForm.get('especialidad')?.hasError('required')">
+                La especialidad es obligatoria.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Fecha de contratación</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fechaContratacion" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="profesorForm.get('fechaContratacion')?.hasError('required')">
+                La fecha de contratación es obligatoria.
+            </mat-error>
+        </mat-form-field>
+
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button color="primary" [mat-dialog-close]="true" [disabled]="profesorForm.invalid"
+        (click)="saveProfesor()">Guardar</button>
+</mat-dialog-actions>
