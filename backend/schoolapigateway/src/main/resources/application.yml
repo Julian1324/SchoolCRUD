@@ -35,6 +35,13 @@ spring:
           filters:
             - RewritePath=/api/estudiantes(?<segment>.*), /${segment}
             - name: PetitionPrefilter
+        - id: profesores-api
+          uri: lb://profesores-service
+          predicates:
+            - Path=/api/profesores/**
+          filters:
+            - RewritePath=/api/profesores(?<segment>.*), /${segment}
+            - name: PetitionPrefilter
         - id: usuarios-api-auth
           uri: lb://usuarios-service
           predicates:
