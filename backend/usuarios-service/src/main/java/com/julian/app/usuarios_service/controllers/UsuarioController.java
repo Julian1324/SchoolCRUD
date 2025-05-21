@@ -3,7 +3,6 @@ package com.julian.app.usuarios_service.controllers;
 import com.julian.app.usuarios_service.dto.LoginDTO;
 import com.julian.app.usuarios_service.dto.TokenDTO;
 import com.julian.app.usuarios_service.services.UsuarioService;
-import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

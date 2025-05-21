@@ -73,11 +73,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         } catch (JWTVerificationException ex) {
             handlerExceptionResolver.resolveException(request, response, null, ex);
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error de verificación JWT: " + ex.getMessage());
             return;
         } catch (Exception ex) {
             handlerExceptionResolver.resolveException(request, response, null, ex);
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error de autenticación: " + ex.getMessage());
             return;
         }
 
