@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         .subscribe({
           next: (res: AuthDTO) => {
             localStorage.setItem('token', res.token);
-            return this.router.navigate(['/dashboard']);
+            return this.router.navigate(['/dashboard/personas']);
           },
           error: (err) => {
             const errorMessage = err.error?.message
